@@ -1,0 +1,605 @@
+---
+API: 2
+OpenSesame: 3.1.2
+Platform: posix
+---
+set width 1024
+set uniform_coordinates no
+set title "New experiment"
+set synth_backend legacy
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend psycho
+set keyboard_backend psycho
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground white
+set font_underline no
+set font_size 18
+set font_italic no
+set font_family mono
+set font_bold no
+set experiment_path "/Users/grantberry/Desktop/DissertationExperiments/AXCPT_OpenSesame"
+set disable_garbage_collection yes
+set description "Default description"
+set coordinates relative
+set compensation 0
+set canvas_backend psycho
+set bidi no
+set background black
+
+define keyboard_response ANSWER
+	set timeout infinite
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+
+define loop Answers
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set item Conditions
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set column_order "YES;NO"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 YES L
+	setcycle 0 NO S
+	run Conditions
+
+define sequence BREAK
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run BreakMessage always
+	run SPACE_BAR always
+
+define sketchpad BreakMessage
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Ok, take a short break.<br/>Press the space bar when you are ready to continue." x=0 y=0 z_index=0
+
+define keyboard_response CUE_ANSWER
+	set timeout 2000
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response "[CorrectAnswer]"
+	set allowed_responses "[YES];[NO]"
+
+define sketchpad Complete
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="You've completed the experiment.<br/><br />Thanks for your time!<br/><br />Please let the experimenter know you've finished.<br/><br/>Press any key to close this window." x=0 y=0 z_index=0
+
+define loop Conditions
+	set source_file ""
+	set source table
+	set repeat 10
+	set order random
+	set item RunTrials
+	set description "Repeatedly runs another item"
+	set cycles 10
+	set continuous no
+	set column_order "Condition;Cue;Probe;CorrectAnswer;Weight;ProbeAnswer"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Weight 7
+	setcycle 0 Probe X
+	setcycle 0 Cue A
+	setcycle 0 CorrectAnswer "[NO]"
+	setcycle 0 Condition AX
+	setcycle 0 ProbeAnswer "[YES]"
+	setcycle 1 Weight 7
+	setcycle 1 Probe X
+	setcycle 1 Cue A
+	setcycle 1 CorrectAnswer "[NO]"
+	setcycle 1 Condition AX
+	setcycle 1 ProbeAnswer "[YES]"
+	setcycle 2 Weight 7
+	setcycle 2 Probe X
+	setcycle 2 Cue A
+	setcycle 2 CorrectAnswer "[NO]"
+	setcycle 2 Condition AX
+	setcycle 2 ProbeAnswer "[YES]"
+	setcycle 3 Weight 7
+	setcycle 3 Probe X
+	setcycle 3 Cue A
+	setcycle 3 CorrectAnswer "[NO]"
+	setcycle 3 Condition AX
+	setcycle 3 ProbeAnswer "[YES]"
+	setcycle 4 Weight 7
+	setcycle 4 Probe X
+	setcycle 4 Cue A
+	setcycle 4 CorrectAnswer "[NO]"
+	setcycle 4 Condition AX
+	setcycle 4 ProbeAnswer "[YES]"
+	setcycle 5 Weight 7
+	setcycle 5 Probe X
+	setcycle 5 Cue A
+	setcycle 5 CorrectAnswer "[NO]"
+	setcycle 5 Condition AX
+	setcycle 5 ProbeAnswer "[YES]"
+	setcycle 6 Weight 7
+	setcycle 6 Probe X
+	setcycle 6 Cue A
+	setcycle 6 CorrectAnswer "[NO]"
+	setcycle 6 Condition AX
+	setcycle 6 ProbeAnswer "[YES]"
+	setcycle 7 Weight 1
+	setcycle 7 Probe X
+	setcycle 7 Cue "[letter1]"
+	setcycle 7 CorrectAnswer "[NO]"
+	setcycle 7 Condition BX
+	setcycle 7 ProbeAnswer "[NO]"
+	setcycle 8 Weight 1
+	setcycle 8 Probe "[letter3]"
+	setcycle 8 Cue A
+	setcycle 8 CorrectAnswer "[NO]"
+	setcycle 8 Condition AY
+	setcycle 8 ProbeAnswer "[NO]"
+	setcycle 9 Weight 1
+	setcycle 9 Probe "[letter4]"
+	setcycle 9 Cue "[letter2]"
+	setcycle 9 CorrectAnswer "[NO]"
+	setcycle 9 Condition BY
+	setcycle 9 ProbeAnswer "[NO]"
+	run RunTrials
+
+define sketchpad Cue
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=red font_bold=no font_family=mono font_italic=no font_size=75 html=yes show_if=always text="[Cue]" x=0 y=0 z_index=0
+
+define keyboard_response DIST_ANSWER
+	set timeout 2000
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response "[NO]"
+	set allowed_responses "[YES];[NO]"
+
+define sketchpad Distractor1
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=75 html=yes show_if=always text="[dist1]" x=0 y=0 z_index=0
+
+define sketchpad Distractor2
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=75 html=yes show_if=always text="[dist2]" x=0 y=0 z_index=0
+
+define sketchpad Distractor3
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=75 html=yes show_if=always text="[dist3]" x=0 y=0 z_index=0
+
+define sketchpad EndPractice
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="That's the end of the practice trials.<br/>If you have any questions, let the experimenter know. <br/>Press the spacebar to continue" x=0 y=0 z_index=0
+
+define loop Even_ANSWERS
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set item Conditions
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set column_order "YES;NO"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 YES S
+	setcycle 0 NO L
+	run Conditions
+
+define loop Even_PRAC_ANSWERS
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set item Practice
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set column_order "YES;NO"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 YES S
+	setcycle 0 NO L
+	run Practice
+
+define sketchpad Example0
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw image center=1 file="AXNoAnswers.jpg" scale=1 show_if=always x=0 y=0 z_index=0
+
+define sketchpad Example1
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw image center=1 file="AX.jpg" scale=1 show_if=always x=0 y=0 z_index=0
+
+define sketchpad Example2
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw image center=1 file="AY.jpg" scale=1 show_if=always x=0 y=0 z_index=0
+
+define sketchpad Example3
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw image center=1 file="BX.jpg" scale=1 show_if=always x=0 y=0 z_index=0
+
+define sketchpad Example4
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw image center=1 file="BY.jpg" scale=1 show_if=always x=0 y=0 z_index=0
+
+define sequence Examples
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run Example0 always
+	run SPACE_BAR always
+	run Example1 always
+	run SPACE_BAR always
+	run Example2 always
+	run SPACE_BAR always
+	run Example3 always
+	run SPACE_BAR always
+	run Example4 always
+	run SPACE_BAR always
+
+define sequence Experiment_Even
+	# Notes: Estimated Runtime: 25 minutes
+	# Cycles: 20
+	# Conditions per cycle: 10
+	# Total letters seen: 1000
+	# Distribution of Conditions: AX 70%; AY 10%; BX 10%; BY 10%
+	# Sequences by Condition: AX 140; AY 20; BX 20; BY 20
+	# Total letters by Condition: AX 700; AY 100; BX 100; BY 100
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run welcome always
+	run _Intro1 always
+	run Examples always
+	run _Intro2 always
+	run _YES always
+	run Shuffle_Items always
+	run Set_Items always
+	run Even_PRAC_ANSWERS always
+	run EndPractice always
+	run _Reminder_Ready always
+	run YESNO always
+	run Reshuffle_Reset_Items always
+	run Even_ANSWERS always
+	run Complete always
+
+define sequence Experiment_Odd
+	# Notes: Estimated Runtime: 25 minutes
+	# Cycles: 20
+	# Conditions per cycle: 10
+	# Total letters seen: 1000
+	# Distribution of Conditions: AX 70%; AY 10%; BX 10%; BY 10%
+	# Sequences by Condition: AX 140; AY 20; BX 20; BY 20
+	# Total letters by Condition: AX 700; AY 100; BX 100; BY 100
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run welcome always
+	run Intro1 always
+	run Examples always
+	run Intro2 always
+	run YES always
+	run Shuffle_Items always
+	run Set_Items always
+	run PracAnswers always
+	run EndPractice always
+	run Reminder_Ready always
+	run YESNO always
+	run Reshuffle_Reset_Items always
+	run Answers always
+	run Complete always
+
+define sketchpad ISI
+	set reset_variables no
+	set duration 500
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad Intro1
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Respond to the SECOND red letter according to these rules:<br/><br/>Press YES  (the L key) only when the second red letter is an X<br/> and the first red letter was an A.<br/><br/>For every first red letter in the sequence, you will hit NO (the S key).<br/><br/>In addition, between the first and second red letters,<br/> three letters will appear in white.<br/> For each of them, regardless of what the letter is,<br/> you must also answer NO (the S key).<br/><br/>In all cases, you must respond as quickly as possible,<br/> trying to avoid making mistakes.<br /><br />Press SPACE BAR to see some examples." x=0 y=0 z_index=0
+
+define sketchpad Intro2
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Let's do a few practice trials.<br /><br />You'll receive feedback after five letters<br/>to let you know how you're doing on the task. <br/><br/>Remember, press  YES (the L key) whenever you see an X preceded by an A.<br /><br />Press YES if you are ready to begin.<br />" x=0 y=0 z_index=0
+
+define keyboard_response PROBE_ANSWER
+	set timeout 2000
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response "[ProbeAnswer]"
+	set allowed_responses "[YES];[NO]"
+
+define loop PracAnswers
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set item Practice
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set column_order "YES;NO"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 YES L
+	setcycle 0 NO S
+	run Practice
+
+define loop Practice
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set item PracticeTrials
+	set description "Repeatedly runs another item"
+	set cycles 4
+	set continuous no
+	set column_order "Condition;Cue;Probe;CorrectAnswer;Weight;ProbeAnswer"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Weight 7
+	setcycle 0 Probe X
+	setcycle 0 Cue A
+	setcycle 0 CorrectAnswer "[NO]"
+	setcycle 0 Condition AX
+	setcycle 0 ProbeAnswer "[YES]"
+	setcycle 1 Weight 1
+	setcycle 1 Probe X
+	setcycle 1 Cue "[letter1]"
+	setcycle 1 CorrectAnswer "[NO]"
+	setcycle 1 Condition BX
+	setcycle 1 ProbeAnswer "[NO]"
+	setcycle 2 Weight 1
+	setcycle 2 Probe "[letter3]"
+	setcycle 2 Cue A
+	setcycle 2 CorrectAnswer "[NO]"
+	setcycle 2 Condition AY
+	setcycle 2 ProbeAnswer "[NO]"
+	setcycle 3 Weight 1
+	setcycle 3 Probe "[letter4]"
+	setcycle 3 Cue "[letter2]"
+	setcycle 3 CorrectAnswer "[NO]"
+	setcycle 3 Condition BY
+	setcycle 3 ProbeAnswer "[NO]"
+	run PracticeTrials
+
+define sequence PracticeTrials
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run Cue always
+	run CUE_ANSWER always
+	run ISI always
+	run Distractor1 always
+	run CUE_ANSWER always
+	run ISI always
+	run Distractor2 always
+	run CUE_ANSWER always
+	run ISI always
+	run Distractor3 always
+	run CUE_ANSWER always
+	run ISI always
+	run Probe always
+	run PROBE_ANSWER always
+	run _Feedback always
+	run SPACE_BAR always
+	run reset_feedback always
+	run Response_Collection always
+	run Reshuffle_Reset_Items always
+
+define sketchpad Probe
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=red font_bold=no font_family=mono font_italic=no font_size=75 html=yes show_if=always text="[Probe]" x=0 y=0 z_index=0
+
+define sketchpad Reminder_Ready
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Remember: press YES (the L key) when you see a red X preceded by a red A.<br /><br />Try to answer as quickly as possible without making mistakes.<br /><br />Good Luck!<br /><br />Press either YES or NO to start the task." x=0 y=0 z_index=0
+
+define inline_script Reshuffle_Reset_Items
+	set description "Executes Python code"
+	___run__
+	distractors=["B","C","D","E","F","G","H","I","J","L","M","N","O","P","Q","R","S","T","U","V","W","Y","Z"]
+	random.shuffle(distractors)
+	l1=distractors.pop(1)
+	l2=distractors.pop(2)
+	l3=distractors.pop(3)
+	l4=distractors.pop(4)
+	d1=distractors.pop(5)
+	d2=distractors.pop(6)
+	d3=distractors.pop(7)
+	exp.set('letter1', l1)
+	exp.set('letter2', l2)
+	exp.set('letter3', l3)
+	exp.set('letter4', l4)
+	exp.set('dist1', d1)
+	exp.set('dist2', d2)
+	exp.set('dist3', d3)
+	global distractors
+	__end__
+	set _prepare "import random"
+
+define logger Response_Collection
+	set description "Logs experimental data"
+	set auto_log yes
+
+define sequence RunTrials
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run counter always
+	run Cue always
+	run CUE_ANSWER always
+	run ISI always
+	run Distractor1 always
+	run DIST_ANSWER always
+	run ISI always
+	run Distractor2 always
+	run DIST_ANSWER always
+	run ISI always
+	run Distractor3 always
+	run DIST_ANSWER always
+	run ISI always
+	run Probe always
+	run PROBE_ANSWER always
+	run Response_Collection always
+	run Reshuffle_Reset_Items always
+	run ISI always
+	run BREAK "=self.get('count_counter') % 10 == 9"
+
+define keyboard_response SPACE_BAR
+	set timeout infinite
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set allowed_responses SPACE
+
+define inline_script Set_Items
+	set description "Executes Python code"
+	___run__
+	#What this does is take your previously shuffled list and assign the last 7 items to our experimental sequence.
+	l1=distractors.pop(1)
+	l2=distractors.pop(2)
+	l3=distractors.pop(3)
+	l4=distractors.pop(4)
+	d1=distractors.pop(5)
+	d2=distractors.pop(6)
+	d3=distractors.pop(7)
+	exp.set('letter1', l1)
+	exp.set('letter2', l2)
+	exp.set('letter3', l3)
+	exp.set('letter4', l4)
+	exp.set('dist1', d1)
+	exp.set('dist2', d2)
+	exp.set('dist3', d3)
+	__end__
+	___prepare__
+	import random
+	global distractors
+	__end__
+
+define inline_script Shuffle_Items
+	set description "Executes Python code"
+	___run__
+	distractors=["B","C","D","E","F","G","H","I","J","L","M","N","O","P","Q","R","S","T","U","V","W","Y","Z"]
+	random.shuffle(distractors)
+	global distractors
+	__end__
+	___prepare__
+	import random
+	__end__
+
+define keyboard_response YES
+	set timeout infinite
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set allowed_responses L
+
+define keyboard_response YESNO
+	set timeout infinite
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set allowed_responses "S;L"
+
+define feedback _Feedback
+	set reset_variables yes
+	set duration 0
+	set description "Provides feedback to the participant"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Your accuracy was [acc].<br/><br/>Your average response time was [avg_rt]ms<br/><br/><br/>Now push the space bar when you're ready to conitnue." x=0 y=0 z_index=0
+
+define sketchpad _Intro1
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Respond to the SECOND red letter according to these rules:<br/><br/>Press YES  (the S key) only when the second red letter is an X<br/> and the first red letter was an A.<br/><br/>For every first red letter in the sequence, you will hit NO (the L key).<br/><br/>In addition, between the first and second red letters,<br/> three letters will appear in white.<br/> For each of them, regardless of what the letter is,<br/> you must also answer NO (the S key).<br/><br/>In all cases, you must respond as quickly as possible,<br/> trying to avoid making mistakes.<br /><br />Press SPACE BAR to see some examples." x=0 y=0 z_index=0
+
+define sketchpad _Intro2
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Let's do a few practice trials.<br /><br />You'll receive feedback after five letters<br/>to let you know how you're doing on the task. <br/><br/>Remember, press  YES (the S key) whenever you see an X preceded by an A.<br /><br />Press YES if you are ready to begin.<br />" x=0 y=0 z_index=0
+
+define sketchpad _Reminder_Ready
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Remember: press YES (the S key) when you see a red X preceded by a red A.<br /><br />Try to answer as quickly as possible without making mistakes.<br /><br />Good Luck!<br /><br />Press either YES or NO to start the task." x=0 y=0 z_index=0
+
+define keyboard_response _YES
+	set timeout infinite
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set allowed_responses S
+
+define sketchpad counter
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+
+define sequence experiment
+	# berry.grant@gmail.com
+	# Notes: Estimated Runtime: 25 minutes
+	# Cycles: 20
+	# Conditions per cycle: 10
+	# Total letters seen: 1000
+	# Distribution of Conditions: AX 70%; AY 10%; BX 10%; BY 10%
+	# Sequences by Condition: AX 140; AY 20; BX 20; BY 20
+	# Total letters by Condition: AX 700; AY 100; BX 100; BY 100
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run Experiment_Even "[subject_parity]=even"
+	run Experiment_Odd "[subject_parity]=odd"
+
+define reset_feedback reset_feedback
+	set description "Resets the feedback variables, such as 'avg_rt' and 'acc'"
+
+define sketchpad welcome
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Welcome to the study! <br/><br/>Your participant code is [subject_nr].<br/><br/>Press any key to continue..." x=0 y=0 z_index=0
+
