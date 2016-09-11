@@ -1,0 +1,516 @@
+---
+API: 2
+OpenSesame: 3.1.2
+Platform: posix
+---
+set width 1024
+set uniform_coordinates yes
+set title "New experiment"
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend psycho
+set keyboard_backend psycho
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground white
+set font_underline no
+set font_size 18
+set font_italic no
+set font_family mono
+set font_bold no
+set experiment_path "/Users/grantberry/Desktop/DissertationExperiments/Phon_Diss_Experiment/n-back_lures"
+set disable_garbage_collection yes
+set description "The main experiment item"
+set coordinates uniform
+set compensation 0
+set color_backend psycho
+set clock_backend psycho
+set canvas_backend psycho
+set bidi no
+set background black
+
+define loop 2_back_list
+	set source table
+	set repeat 15
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 4
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Seq1 "[stim1]"
+	setcycle 0 Seq2 "[stim2]"
+	setcycle 0 Seq3 "[stim3]"
+	setcycle 0 Seq4 "[stim4]"
+	setcycle 0 Seq5 "[stim5]"
+	setcycle 0 Probe "[stim4]"
+	setcycle 0 Correct "[true]"
+	setcycle 0 Type Control
+	setcycle 0 LureType Control
+	setcycle 0 n 2
+	setcycle 1 Seq1 "[stim1]"
+	setcycle 1 Seq2 "[stim2]"
+	setcycle 1 Seq3 "[stim3]"
+	setcycle 1 Seq4 "[stim5]"
+	setcycle 1 Seq5 "[stim4]"
+	setcycle 1 Probe "[stim4]"
+	setcycle 1 Correct "[false]"
+	setcycle 1 Type Lure
+	setcycle 1 LureType "n-1"
+	setcycle 1 n 2
+	setcycle 2 Seq1 "[stim1]"
+	setcycle 2 Seq2 "[stim2]"
+	setcycle 2 Seq3 "[stim4]"
+	setcycle 2 Seq4 "[stim3]"
+	setcycle 2 Seq5 "[stim5]"
+	setcycle 2 Probe "[stim4]"
+	setcycle 2 Correct "[false]"
+	setcycle 2 Type Lure
+	setcycle 2 LureType "n+1"
+	setcycle 2 n 2
+	setcycle 3 Seq1 "[stim1]"
+	setcycle 3 Seq2 "[stim2]"
+	setcycle 3 Seq3 "[stim3]"
+	setcycle 3 Seq4 "[stim4]"
+	setcycle 3 Seq5 "[stim5]"
+	setcycle 3 Probe "[stim4]"
+	setcycle 3 Correct "[true]"
+	setcycle 3 Type Control
+	setcycle 3 LureType Control
+	setcycle 3 n 2
+	run Exp_seq
+
+define loop 3_back_list
+	set source table
+	set repeat 15
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 4
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Seq1 "[stim1]"
+	setcycle 0 Seq2 "[stim2]"
+	setcycle 0 Seq3 "[stim3]"
+	setcycle 0 Seq4 "[stim4]"
+	setcycle 0 Seq5 "[stim5]"
+	setcycle 0 Probe "[stim3]"
+	setcycle 0 Correct "[true]"
+	setcycle 0 Type Control
+	setcycle 0 LureType Control
+	setcycle 0 n 3
+	setcycle 1 Seq1 "[stim1]"
+	setcycle 1 Seq2 "[stim2]"
+	setcycle 1 Seq3 "[stim4]"
+	setcycle 1 Seq4 "[stim3]"
+	setcycle 1 Seq5 "[stim5]"
+	setcycle 1 Probe "[stim3]"
+	setcycle 1 Correct "[false]"
+	setcycle 1 Type Lure
+	setcycle 1 LureType "n-1"
+	setcycle 1 n 3
+	setcycle 2 Seq1 "[stim3]"
+	setcycle 2 Seq2 "[stim3]"
+	setcycle 2 Seq3 "[stim2]"
+	setcycle 2 Seq4 "[stim4]"
+	setcycle 2 Seq5 "[stim5]"
+	setcycle 2 Probe "[stim3]"
+	setcycle 2 Correct "[false]"
+	setcycle 2 Type Lure
+	setcycle 2 LureType "n+1"
+	setcycle 2 n 3
+	setcycle 3 Seq1 "[stim1]"
+	setcycle 3 Seq2 "[stim2]"
+	setcycle 3 Seq3 "[stim3]"
+	setcycle 3 Seq4 "[stim4]"
+	setcycle 3 Seq5 "[stim5]"
+	setcycle 3 Probe "[stim3]"
+	setcycle 3 Correct "[true]"
+	setcycle 3 Type Control
+	setcycle 3 LureType Control
+	setcycle 3 n 3
+	run Exp_seq
+
+define sketchpad BREAK
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="You've completed 48 trials. <br /><br />Take a break, and press any key to continue..." x=0 y=0 z_index=0
+
+define sequence Exp_seq
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run fixation_dot always
+	run Seq1 always
+	run ISI always
+	run fixation_dot always
+	run Seq2 always
+	run ISI always
+	run fixation_dot always
+	run Seq3 always
+	run ISI always
+	run fixation_dot always
+	run Seq4 always
+	run ISI always
+	run fixation_dot always
+	run Seq5 always
+	run ISI always
+	run Probe always
+	run Response always
+	run logger always
+	run BREAK "[count_logger] %30 = 29 and [count_logger]<105"
+	run ISI always
+	run Shuffle_stims always
+	run Set_stims always
+
+define sequence Exp_seq_practice
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run fixation_dot_1 always
+	run Seq1_1 always
+	run ISI_1 always
+	run fixation_dot_1 always
+	run Seq2_1 always
+	run ISI_1 always
+	run fixation_dot_1 always
+	run Seq3_1 always
+	run ISI_1 always
+	run fixation_dot_1 always
+	run Seq4_1 always
+	run ISI_1 always
+	run fixation_dot_1 always
+	run Seq5_1 always
+	run ISI_1 always
+	run Probe_1 always
+	run pracResponse always
+	run Feedback_1 always
+	run ISI_1 always
+	run Shuffle_stims_1 always
+	run Set_stims_1 always
+
+define sequence Experiment_sequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run Welcome always
+	run keys always
+	run begin_practice always
+	run Shuffle_stims always
+	run Set_stims always
+	run Practice_loop always
+	run Intro_2_back always
+	run 2_back_list always
+	run Intro_3_back always
+	run Intr_3_back_2 always
+	run 3_back_list always
+
+define sketchpad Feedback_1
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="The correct answer was [Correct].<br /><br />[Seq4] was 2 letters ago.<br /><br />" x=-32 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Press any key to continue with another practice trial..." x=0 y=288 z_index=0
+
+define sketchpad Goodbye
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="This concludes the experiment. Thanks for your time!<br /><br />Please let the experimenter know you've finished." x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Press any key to log your responses and exit the experiment..." x=0 y=320 z_index=0
+
+define sketchpad ISI
+	set duration 1000
+	set description "Displays stimuli"
+
+define sketchpad ISI_1
+	set duration 1000
+	set description "Displays stimuli"
+
+define sketchpad Intr_3_back_2
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Remember, answer Yes if the red letter occurred THREE letters ago.<br /><br />Answer No if it did not.<br /><br />Yes = [true]<br />No  = [false]" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Press any key to begin..." x=0 y=288 z_index=0
+
+define sketchpad Intro_2_back
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="You've completed the practice trials! Now we'll begin the experiment.<br /><br />Remember, press [true] when the red letter appeared two letters ago.<br />Press [false] otherwise." x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Press any key to begin..." x=0 y=288 z_index=0
+
+define sketchpad Intro_3_back
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Very good!<br /><br />Now, pay attention to the letter that occurred <b>THREE</b> letters before the red letter.<br /><br />For example, if you see B F K H M and then a red K,<br />your answer woul be Yes ([true]).<br /><br />Otherwise, you would answer No ([false])" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Press any key to continue..." x=0 y=288 z_index=0
+
+define loop Practice_loop
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 4
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Seq1 "[stim1]"
+	setcycle 0 Seq2 "[stim2]"
+	setcycle 0 Seq3 "[stim3]"
+	setcycle 0 Seq4 "[stim4]"
+	setcycle 0 Seq5 "[stim5]"
+	setcycle 0 Probe "[stim4]"
+	setcycle 0 Correct "[true]"
+	setcycle 0 Type Control
+	setcycle 0 LureType Control
+	setcycle 0 n 2
+	setcycle 1 Seq1 "[stim1]"
+	setcycle 1 Seq2 "[stim2]"
+	setcycle 1 Seq3 "[stim3]"
+	setcycle 1 Seq4 "[stim5]"
+	setcycle 1 Seq5 "[stim4]"
+	setcycle 1 Probe "[stim4]"
+	setcycle 1 Correct "[false]"
+	setcycle 1 Type Lure
+	setcycle 1 LureType "n-1"
+	setcycle 1 n 2
+	setcycle 2 Seq1 "[stim1]"
+	setcycle 2 Seq2 "[stim2]"
+	setcycle 2 Seq3 "[stim4]"
+	setcycle 2 Seq4 "[stim3]"
+	setcycle 2 Seq5 "[stim5]"
+	setcycle 2 Probe "[stim4]"
+	setcycle 2 Correct "[false]"
+	setcycle 2 Type Lure
+	setcycle 2 LureType "n+1"
+	setcycle 2 n 2
+	setcycle 3 Seq1 "[stim1]"
+	setcycle 3 Seq2 "[stim2]"
+	setcycle 3 Seq3 "[stim3]"
+	setcycle 3 Seq4 "[stim4]"
+	setcycle 3 Seq5 "[stim5]"
+	setcycle 3 Probe "[stim4]"
+	setcycle 3 Correct "[true]"
+	setcycle 3 Type Control
+	setcycle 3 LureType Control
+	setcycle 3 n 2
+	run Exp_seq_practice
+
+define sketchpad Probe
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=red font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Probe]" x=0 y=0 z_index=0
+	draw textline center=1 color=red font_bold=yes font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Did this occur [n] letters ago?<br />[true]=Yes<br />[false]=No" x=0 y=192 z_index=0
+
+define sketchpad Probe_1
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=red font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Probe]" x=0 y=0 z_index=0
+	draw textline center=1 color=red font_bold=yes font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Did this occur [n] letters ago?<br />[true]=Yes<br />[false]=No" x=0 y=192 z_index=0
+
+define keyboard_response Response
+	set timeout 2500
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response "[Correct]"
+	set allowed_responses "[true];[false]"
+
+define sketchpad Seq1
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq1]" x=0 y=0 z_index=0
+
+define sketchpad Seq1_1
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq1]" x=0 y=0 z_index=0
+
+define sketchpad Seq2
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq2]" x=0 y=0 z_index=0
+
+define sketchpad Seq2_1
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq2]" x=0 y=0 z_index=0
+
+define sketchpad Seq3
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq3]" x=0 y=0 z_index=0
+
+define sketchpad Seq3_1
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq3]" x=0 y=0 z_index=0
+
+define sketchpad Seq4
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq4]" x=0 y=0 z_index=0
+
+define sketchpad Seq4_1
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq4]" x=0 y=0 z_index=0
+
+define sketchpad Seq5
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq5]" x=0 y=0 z_index=0
+
+define sketchpad Seq5_1
+	set duration 500
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=yes font_family=mono font_italic=no font_size=50 html=yes show_if=always text="[Seq5]" x=0 y=0 z_index=0
+
+define inline_script Set_stims
+	set description "Executes Python code"
+	___run__
+	#Pull 5 unique letters, shuffle them, and then assign them to the list
+	
+	stim1=stims.pop(5)
+	stim2=stims.pop(4)
+	stim3=stims.pop(3)
+	stim4=stims.pop(2)
+	stim5=stims.pop(1)
+	
+	exp.set('stim1',stim1)
+	exp.set('stim2',stim2)
+	exp.set('stim3',stim3)
+	exp.set('stim4',stim4)
+	exp.set('stim5',stim5)
+	__end__
+	___prepare__
+	import random
+	global stims
+	__end__
+
+define inline_script Set_stims_1
+	set description "Executes Python code"
+	___run__
+	#Pull 5 unique letters, shuffle them, and then assign them to the list
+	
+	stim1=stims.pop(5)
+	stim2=stims.pop(4)
+	stim3=stims.pop(3)
+	stim4=stims.pop(2)
+	stim5=stims.pop(1)
+	
+	exp.set('stim1',stim1)
+	exp.set('stim2',stim2)
+	exp.set('stim3',stim3)
+	exp.set('stim4',stim4)
+	exp.set('stim5',stim5)
+	__end__
+	___prepare__
+	import random
+	global stims
+	__end__
+
+define inline_script Shuffle_stims
+	set description "Executes Python code"
+	___run__
+	stims=["B","F","K","H","M","Q","R","X"]
+	random.shuffle(stims)
+	global stims
+	__end__
+	___prepare__
+	import random
+	global random
+	__end__
+
+define inline_script Shuffle_stims_1
+	set description "Executes Python code"
+	___run__
+	stims=["B","F","K","H","M","Q","R","X"]
+	random.shuffle(stims)
+	global stims
+	__end__
+	___prepare__
+	import random
+	global random
+	__end__
+
+define sketchpad Welcome
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Welcome to the experiment!<br /><br />In this experiment, you will see a series of<br />white letters followed by a red letter.<br /><br />Your task is to pay close attention to the sequence of letters<br />and indicate if the red letter occured 2 letters ago.<br /><br />For example, if you see white letters B F K H M followed by a red H,<br /> your answer would be Yes.<br /> <br />If you saw the same sequence followed by a red K instead, <br />your answer would be No." x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Press any key to continue..." x=0 y=320 z_index=0
+
+define keyboard_response begin_practice
+	set timeout infinite
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response "[true]"
+	set allowed_responses "[true]"
+
+define loop exp_even
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 true s
+	setcycle 0 false l
+	run Experiment_sequence
+
+define loop exp_odd
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 true l
+	setcycle 0 false s
+	run Experiment_sequence
+
+define sequence experiment
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run exp_even "[subject_parity]=even"
+	run exp_odd "[subject_parity]=odd"
+	run Goodbye always
+
+define sketchpad fixation_dot
+	set duration 200
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad fixation_dot_1
+	set duration 200
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad keys
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="To respond Yes, hit the [true] key.<br /><br />To respond No, hit the [false] key.<br /><br />You will have 2.5 seconds to respond.<br />Please be as quick and as accurate as possible." x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Press [true] to begin some practice trials..." x=0 y=288 z_index=0
+
+define logger logger
+	set description "Logs experimental data"
+	set auto_log yes
+
+define keyboard_response pracResponse
+	set timeout 2500
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response "[Correct]"
+	set allowed_responses "[true];[false]"
+
