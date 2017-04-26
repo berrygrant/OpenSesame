@@ -23,7 +23,7 @@ This is a modified version of the picture-word variant of the Stroop task, based
 Time: 30-45 min
 
 # English verbal fluency
-This is a standard verbal fluency task used in the <a href='https://bilingualismmindbrain.com/' target='_blank'>Bilingualism: Mind and Brain Lab</a> at UC Riverside (formerly at Penn State University). In this task, participants see a broad semantic category on the screen and, upon hearing a beep, name as many members of that category as possible in 30 seconds.
+This is a standard verbal fluency task used in the <a href='https://bilingualismmindbrain.com/' target='_blank'>Bilingualism: Mind and Brain Lab</a> at UC Riverside (formerly at Penn State University). In this task, participants see a broad semantic category on the screen and, upon hearing a beep, name as many members of that category as possible in 60 seconds.
 
 Time: 10-15 min
 
