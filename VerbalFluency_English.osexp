@@ -1,0 +1,198 @@
+---
+API: 2
+OpenSesame: 3.1.4
+Platform: posix
+---
+set width 1024
+set uniform_coordinates no
+set title "New experiment"
+set synth_backend legacy
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend psycho
+set keyboard_backend psycho
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground white
+set font_underline no
+set font_size 18
+set font_italic no
+set font_family mono
+set font_bold no
+set experiment_path "/Users/grantberry/Desktop/Dissertation/DissertationExperiments/Old/Verbal Fluency (English)"
+set disable_garbage_collection yes
+set description "Default description"
+set coordinates relative
+set compensation 0
+set canvas_backend psycho
+set bidi no
+set background black
+
+define loop Categories
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set item ExpTrials
+	set description "Repeatedly runs another item"
+	set cycles 6
+	set continuous no
+	set column_order "Category;Animacy"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Category Animals
+	setcycle 0 Animacy Animate
+	setcycle 1 Category Vegetables
+	setcycle 1 Animacy Inanimate
+	setcycle 2 Category Fruits
+	setcycle 2 Animacy Inanimate
+	setcycle 3 Category Clothing
+	setcycle 3 Animacy Inanimate
+	setcycle 4 Category "Body Parts"
+	setcycle 4 Animacy Animate
+	setcycle 5 Category Furniture
+	setcycle 5 Animacy Inanimate
+	run ExpTrials
+
+define sketchpad Category
+	set reset_variables no
+	set duration 3000
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="[Category]" x=0 y=0 z_index=0
+
+define sketchpad Conclusion
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="You've completed the experiment!<br/><br/>Please let the experimenter know." x=0 y=0 z_index=0
+
+define sketchpad EndPractice
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="This concludes the practice block.<br/><br/>When you are ready to begin the experimental block,<br/>press the SPACE BAR." x=0 y=0 z_index=0
+
+define sequence ExpTrials
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run ISI always
+	run Category always
+	run beep always
+	run Speak always
+	run beep always
+	run Time_Up always
+	run SPACE_BAR always
+	run logger always
+
+define sketchpad ISI
+	set reset_variables no
+	set duration 500
+	set description "Displays stimuli"
+	draw fixdot color=green show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad Intro1
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="In the following experiment, you will be presented<br/>with a series of categories, one at a time.<br/><br/> For example, you may be presented with VEGETABLES or FRUITS.<br/><br/> The category will appear on the screen for a few seconds,<br/> then the screen will go blank.<br/><br/> Afterwards, you will hear a beep.<br/><br/> After you hear the beep,<br/> you have 60 seconds to say as many items as possible<br/> that belong to that category in English.<br/><br/>  At the end of the 60 seconds,<br/> you will hear a beep and the word STOP will appear on the screen.  <br /><br />Press SPACE to continue." x=0 y=0 z_index=0
+
+define sketchpad Intro2
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Please speak LOUDLY and CLEARLY.<br/><br/> Try not to repeat any examples.<br/><br/> Try not to make extra sounds,<br/> such as uhh..., coughing, laughing, etc.<br/><br/> Try not to use proper nouns,<br/> such as particular places, names, brand names, etc.<br/><br/> Also, try to avoid saying variations of the same word, <br/>such as potato and potatoes.<br/><br/>Press the SPACE BAR to begin a practice trial." x=0 y=0 z_index=0
+
+define loop Practice
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set item ""
+	set description "Repeatedly runs another item"
+	set cycles 1
+	set continuous no
+	set column_order "Category;Animacy"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Category Colors
+	setcycle 0 Animacy Inanimate
+	run PracticeTrials
+
+define sequence PracticeTrials
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run ISI always
+	run Category always
+	run beep always
+	run Speak always
+	run beep always
+	run Time_Up always
+	run SPACE_BAR always
+	run logger always
+
+define keyboard_response SPACE_BAR
+	set timeout infinite
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set allowed_responses SPACE
+
+define sketchpad Speak
+	set reset_variables no
+	set duration 60000
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="(Speak now)" x=0 y=0 z_index=0
+
+define sketchpad Time_Up
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="STOP!<br/><br/>Time's up!<br/><br/>Press the SPACE BAR to move to the next category." x=0 y=0 z_index=0
+
+define synth beep
+	set volume 1
+	set pan 0
+	set osc sine
+	set length 100
+	set freq 440
+	set duration sound
+	set description "A basic sound synthesizer"
+	set decay 5
+	set attack 0
+
+define sequence experiment
+	# Written by Grant M. Berry, 08-2015
+	# berry.grant@gmail.com
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run welcome always
+	run SPACE_BAR always
+	run Intro1 always
+	run SPACE_BAR always
+	run Intro2 always
+	run SPACE_BAR always
+	run Practice always
+	run EndPractice always
+	run SPACE_BAR always
+	run Categories always
+	run Conclusion always
+
+define logger logger
+	set description "Logs experimental data"
+	set auto_log yes
+
+define sketchpad welcome
+	set start_response_interval no
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Welcome to the experiment.<br/><br/>Your Participant Code is [subject_nr].<br/><br/>Press the SPACE BAR to begin." x=0 y=0 z_index=0
+

@@ -1,0 +1,901 @@
+---
+API: 2
+OpenSesame: 3.1.4
+Platform: posix
+---
+set width 1024
+set uniform_coordinates no
+set title "New experiment"
+set synth_backend legacy
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend psycho
+set keyboard_backend psycho
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground white
+set font_underline no
+set font_size 32
+set font_italic no
+set font_family mono
+set font_bold no
+set experiment_path "/Users/grantberry/Desktop/Dissertation/DissertationExperiments/Old/Digit Span"
+set disable_garbage_collection yes
+set description "Default description"
+set coordinates relative
+set compensation 0
+set canvas_backend psycho
+set bidi no
+set background black
+
+define form_text_input Answer
+	set timeout infinite
+	set spacing 10
+	set rows "1;1;6"
+	set only_render no
+	set margins "50;50;50;50"
+	set form_var response
+	set form_title Recall
+	set form_question "TASK [Nback]. What were the numbers, in order? Enter them and then hit Return to continue..."
+	set cols 1
+	set _theme gray
+	widget 0 0 1 1 label text="[form_title]"
+	widget 0 1 1 1 label center=no text="[form_question]"
+	widget 0 2 1 1 text_input focus=yes return_accepts=yes stub="" var="[form_var]"
+
+
+define sketchpad Complete
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="You've completed the experiment.<br/>Press any key to exit." x=0 y=0 z_index=0
+
+define loop Conditions
+	set source_file ""
+	set source table
+	set skip 0
+	set repeat 1
+	set order sequential
+	set item Trials
+	set description "Repeatedly runs another item"
+	set cycles 50
+	set continuous no
+	set column_order "Nback;Weight;Num0;Num1;Num2;Num3;Num4;Num5;Num6;Num7;Num8;Num9"
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 Num4 7
+	setcycle 0 Num5 7
+	setcycle 0 Num6 7
+	setcycle 0 Num7 7
+	setcycle 0 Num0 "[num0]"
+	setcycle 0 Num2 7
+	setcycle 0 Weight 5
+	setcycle 0 Num3 7
+	setcycle 0 Num8 7
+	setcycle 0 Num9 7
+	setcycle 0 Nback 1
+	setcycle 0 Num1 7
+	setcycle 1 Num4 7
+	setcycle 1 Num5 7
+	setcycle 1 Num6 7
+	setcycle 1 Num7 7
+	setcycle 1 Num0 "[num0]"
+	setcycle 1 Num2 7
+	setcycle 1 Weight 5
+	setcycle 1 Num3 7
+	setcycle 1 Num8 7
+	setcycle 1 Num9 7
+	setcycle 1 Nback 1
+	setcycle 1 Num1 7
+	setcycle 2 Num4 7
+	setcycle 2 Num5 7
+	setcycle 2 Num6 7
+	setcycle 2 Num7 7
+	setcycle 2 Num0 "[num0]"
+	setcycle 2 Num2 7
+	setcycle 2 Weight 5
+	setcycle 2 Num3 7
+	setcycle 2 Num8 7
+	setcycle 2 Num9 7
+	setcycle 2 Nback 1
+	setcycle 2 Num1 7
+	setcycle 3 Num4 7
+	setcycle 3 Num5 7
+	setcycle 3 Num6 7
+	setcycle 3 Num7 7
+	setcycle 3 Num0 "[num0]"
+	setcycle 3 Num2 7
+	setcycle 3 Weight 5
+	setcycle 3 Num3 7
+	setcycle 3 Num8 7
+	setcycle 3 Num9 7
+	setcycle 3 Nback 1
+	setcycle 3 Num1 7
+	setcycle 4 Num4 7
+	setcycle 4 Num5 7
+	setcycle 4 Num6 7
+	setcycle 4 Num7 7
+	setcycle 4 Num0 "[num0]"
+	setcycle 4 Num2 7
+	setcycle 4 Weight 5
+	setcycle 4 Num3 7
+	setcycle 4 Num8 7
+	setcycle 4 Num9 7
+	setcycle 4 Nback 1
+	setcycle 4 Num1 7
+	setcycle 5 Num4 7
+	setcycle 5 Num5 7
+	setcycle 5 Num6 7
+	setcycle 5 Num7 7
+	setcycle 5 Num0 "[num0]"
+	setcycle 5 Num2 7
+	setcycle 5 Weight 5
+	setcycle 5 Num3 7
+	setcycle 5 Num8 7
+	setcycle 5 Num9 7
+	setcycle 5 Nback 2
+	setcycle 5 Num1 "[num1]"
+	setcycle 6 Num4 7
+	setcycle 6 Num5 7
+	setcycle 6 Num6 7
+	setcycle 6 Num7 7
+	setcycle 6 Num0 "[num0]"
+	setcycle 6 Num2 7
+	setcycle 6 Weight 5
+	setcycle 6 Num3 7
+	setcycle 6 Num8 7
+	setcycle 6 Num9 7
+	setcycle 6 Nback 2
+	setcycle 6 Num1 "[num1]"
+	setcycle 7 Num4 7
+	setcycle 7 Num5 7
+	setcycle 7 Num6 7
+	setcycle 7 Num7 7
+	setcycle 7 Num0 "[num0]"
+	setcycle 7 Num2 7
+	setcycle 7 Weight 5
+	setcycle 7 Num3 7
+	setcycle 7 Num8 7
+	setcycle 7 Num9 7
+	setcycle 7 Nback 2
+	setcycle 7 Num1 "[num1]"
+	setcycle 8 Num4 7
+	setcycle 8 Num5 7
+	setcycle 8 Num6 7
+	setcycle 8 Num7 7
+	setcycle 8 Num0 "[num0]"
+	setcycle 8 Num2 7
+	setcycle 8 Weight 5
+	setcycle 8 Num3 7
+	setcycle 8 Num8 7
+	setcycle 8 Num9 7
+	setcycle 8 Nback 2
+	setcycle 8 Num1 "[num1]"
+	setcycle 9 Num4 7
+	setcycle 9 Num5 7
+	setcycle 9 Num6 7
+	setcycle 9 Num7 7
+	setcycle 9 Num0 "[num0]"
+	setcycle 9 Num2 7
+	setcycle 9 Weight 5
+	setcycle 9 Num3 7
+	setcycle 9 Num8 7
+	setcycle 9 Num9 7
+	setcycle 9 Nback 2
+	setcycle 9 Num1 "[num1]"
+	setcycle 10 Num4 7
+	setcycle 10 Num5 7
+	setcycle 10 Num6 7
+	setcycle 10 Num7 7
+	setcycle 10 Num0 "[num0]"
+	setcycle 10 Num2 "[num2]"
+	setcycle 10 Weight 5
+	setcycle 10 Num3 7
+	setcycle 10 Num8 7
+	setcycle 10 Num9 7
+	setcycle 10 Nback 3
+	setcycle 10 Num1 "[num1]"
+	setcycle 11 Num4 7
+	setcycle 11 Num5 7
+	setcycle 11 Num6 7
+	setcycle 11 Num7 7
+	setcycle 11 Num0 "[num0]"
+	setcycle 11 Num2 "[num2]"
+	setcycle 11 Weight 5
+	setcycle 11 Num3 7
+	setcycle 11 Num8 7
+	setcycle 11 Num9 7
+	setcycle 11 Nback 3
+	setcycle 11 Num1 "[num1]"
+	setcycle 12 Num4 7
+	setcycle 12 Num5 7
+	setcycle 12 Num6 7
+	setcycle 12 Num7 7
+	setcycle 12 Num0 "[num0]"
+	setcycle 12 Num2 "[num2]"
+	setcycle 12 Weight 5
+	setcycle 12 Num3 7
+	setcycle 12 Num8 7
+	setcycle 12 Num9 7
+	setcycle 12 Nback 3
+	setcycle 12 Num1 "[num1]"
+	setcycle 13 Num4 7
+	setcycle 13 Num5 7
+	setcycle 13 Num6 7
+	setcycle 13 Num7 7
+	setcycle 13 Num0 "[num0]"
+	setcycle 13 Num2 "[num2]"
+	setcycle 13 Weight 5
+	setcycle 13 Num3 7
+	setcycle 13 Num8 7
+	setcycle 13 Num9 7
+	setcycle 13 Nback 3
+	setcycle 13 Num1 "[num1]"
+	setcycle 14 Num4 7
+	setcycle 14 Num5 7
+	setcycle 14 Num6 7
+	setcycle 14 Num7 7
+	setcycle 14 Num0 "[num0]"
+	setcycle 14 Num2 "[num2]"
+	setcycle 14 Weight 5
+	setcycle 14 Num3 7
+	setcycle 14 Num8 7
+	setcycle 14 Num9 7
+	setcycle 14 Nback 3
+	setcycle 14 Num1 "[num1]"
+	setcycle 15 Num4 7
+	setcycle 15 Num5 7
+	setcycle 15 Num6 7
+	setcycle 15 Num7 7
+	setcycle 15 Num0 "[num0]"
+	setcycle 15 Num2 "[num2]"
+	setcycle 15 Weight 5
+	setcycle 15 Num3 "[num3]"
+	setcycle 15 Num8 7
+	setcycle 15 Num9 7
+	setcycle 15 Nback 4
+	setcycle 15 Num1 "[num1]"
+	setcycle 16 Num4 7
+	setcycle 16 Num5 7
+	setcycle 16 Num6 7
+	setcycle 16 Num7 7
+	setcycle 16 Num0 "[num0]"
+	setcycle 16 Num2 "[num2]"
+	setcycle 16 Weight 5
+	setcycle 16 Num3 "[num3]"
+	setcycle 16 Num8 7
+	setcycle 16 Num9 7
+	setcycle 16 Nback 4
+	setcycle 16 Num1 "[num1]"
+	setcycle 17 Num4 7
+	setcycle 17 Num5 7
+	setcycle 17 Num6 7
+	setcycle 17 Num7 7
+	setcycle 17 Num0 "[num0]"
+	setcycle 17 Num2 "[num2]"
+	setcycle 17 Weight 5
+	setcycle 17 Num3 "[num3]"
+	setcycle 17 Num8 7
+	setcycle 17 Num9 7
+	setcycle 17 Nback 4
+	setcycle 17 Num1 "[num1]"
+	setcycle 18 Num4 7
+	setcycle 18 Num5 7
+	setcycle 18 Num6 7
+	setcycle 18 Num7 7
+	setcycle 18 Num0 "[num0]"
+	setcycle 18 Num2 "[num2]"
+	setcycle 18 Weight 5
+	setcycle 18 Num3 "[num3]"
+	setcycle 18 Num8 7
+	setcycle 18 Num9 7
+	setcycle 18 Nback 4
+	setcycle 18 Num1 "[num1]"
+	setcycle 19 Num4 7
+	setcycle 19 Num5 7
+	setcycle 19 Num6 7
+	setcycle 19 Num7 7
+	setcycle 19 Num0 "[num0]"
+	setcycle 19 Num2 "[num2]"
+	setcycle 19 Weight 5
+	setcycle 19 Num3 "[num3]"
+	setcycle 19 Num8 7
+	setcycle 19 Num9 7
+	setcycle 19 Nback 4
+	setcycle 19 Num1 "[num1]"
+	setcycle 20 Num4 "[num4]"
+	setcycle 20 Num5 7
+	setcycle 20 Num6 7
+	setcycle 20 Num7 7
+	setcycle 20 Num0 "[num0]"
+	setcycle 20 Num2 "[num2]"
+	setcycle 20 Weight 5
+	setcycle 20 Num3 "[num3]"
+	setcycle 20 Num8 7
+	setcycle 20 Num9 7
+	setcycle 20 Nback 5
+	setcycle 20 Num1 "[num1]"
+	setcycle 21 Num4 "[num4]"
+	setcycle 21 Num5 7
+	setcycle 21 Num6 7
+	setcycle 21 Num7 7
+	setcycle 21 Num0 "[num0]"
+	setcycle 21 Num2 "[num2]"
+	setcycle 21 Weight 5
+	setcycle 21 Num3 "[num3]"
+	setcycle 21 Num8 7
+	setcycle 21 Num9 7
+	setcycle 21 Nback 5
+	setcycle 21 Num1 "[num1]"
+	setcycle 22 Num4 "[num4]"
+	setcycle 22 Num5 7
+	setcycle 22 Num6 7
+	setcycle 22 Num7 7
+	setcycle 22 Num0 "[num0]"
+	setcycle 22 Num2 "[num2]"
+	setcycle 22 Weight 5
+	setcycle 22 Num3 "[num3]"
+	setcycle 22 Num8 7
+	setcycle 22 Num9 7
+	setcycle 22 Nback 5
+	setcycle 22 Num1 "[num1]"
+	setcycle 23 Num4 "[num4]"
+	setcycle 23 Num5 7
+	setcycle 23 Num6 7
+	setcycle 23 Num7 7
+	setcycle 23 Num0 "[num0]"
+	setcycle 23 Num2 "[num2]"
+	setcycle 23 Weight 5
+	setcycle 23 Num3 "[num3]"
+	setcycle 23 Num8 7
+	setcycle 23 Num9 7
+	setcycle 23 Nback 5
+	setcycle 23 Num1 "[num1]"
+	setcycle 24 Num4 "[num4]"
+	setcycle 24 Num5 7
+	setcycle 24 Num6 7
+	setcycle 24 Num7 7
+	setcycle 24 Num0 "[num0]"
+	setcycle 24 Num2 "[num2]"
+	setcycle 24 Weight 5
+	setcycle 24 Num3 "[num3]"
+	setcycle 24 Num8 7
+	setcycle 24 Num9 7
+	setcycle 24 Nback 5
+	setcycle 24 Num1 "[num1]"
+	setcycle 25 Num4 "[num4]"
+	setcycle 25 Num5 "[num5]"
+	setcycle 25 Num6 7
+	setcycle 25 Num7 7
+	setcycle 25 Num0 "[num0]"
+	setcycle 25 Num2 "[num2]"
+	setcycle 25 Weight 5
+	setcycle 25 Num3 "[num3]"
+	setcycle 25 Num8 7
+	setcycle 25 Num9 7
+	setcycle 25 Nback 6
+	setcycle 25 Num1 "[num1]"
+	setcycle 26 Num4 "[num4]"
+	setcycle 26 Num5 "[num5]"
+	setcycle 26 Num6 7
+	setcycle 26 Num7 7
+	setcycle 26 Num0 "[num0]"
+	setcycle 26 Num2 "[num2]"
+	setcycle 26 Weight 5
+	setcycle 26 Num3 "[num3]"
+	setcycle 26 Num8 7
+	setcycle 26 Num9 7
+	setcycle 26 Nback 6
+	setcycle 26 Num1 "[num1]"
+	setcycle 27 Num4 "[num4]"
+	setcycle 27 Num5 "[num5]"
+	setcycle 27 Num6 7
+	setcycle 27 Num7 7
+	setcycle 27 Num0 "[num0]"
+	setcycle 27 Num2 "[num2]"
+	setcycle 27 Weight 5
+	setcycle 27 Num3 "[num3]"
+	setcycle 27 Num8 7
+	setcycle 27 Num9 7
+	setcycle 27 Nback 6
+	setcycle 27 Num1 "[num1]"
+	setcycle 28 Num4 "[num4]"
+	setcycle 28 Num5 "[num5]"
+	setcycle 28 Num6 7
+	setcycle 28 Num7 7
+	setcycle 28 Num0 "[num0]"
+	setcycle 28 Num2 "[num2]"
+	setcycle 28 Weight 5
+	setcycle 28 Num3 "[num3]"
+	setcycle 28 Num8 7
+	setcycle 28 Num9 7
+	setcycle 28 Nback 6
+	setcycle 28 Num1 "[num1]"
+	setcycle 29 Num4 "[num4]"
+	setcycle 29 Num5 "[num5]"
+	setcycle 29 Num6 7
+	setcycle 29 Num7 7
+	setcycle 29 Num0 "[num0]"
+	setcycle 29 Num2 "[num2]"
+	setcycle 29 Weight 5
+	setcycle 29 Num3 "[num3]"
+	setcycle 29 Num8 7
+	setcycle 29 Num9 7
+	setcycle 29 Nback 6
+	setcycle 29 Num1 "[num1]"
+	setcycle 30 Num4 "[num4]"
+	setcycle 30 Num5 "[num5]"
+	setcycle 30 Num6 "[num6]"
+	setcycle 30 Num7 7
+	setcycle 30 Num0 "[num0]"
+	setcycle 30 Num2 "[num2]"
+	setcycle 30 Weight 5
+	setcycle 30 Num3 "[num3]"
+	setcycle 30 Num8 7
+	setcycle 30 Num9 7
+	setcycle 30 Nback 7
+	setcycle 30 Num1 "[num1]"
+	setcycle 31 Num4 "[num4]"
+	setcycle 31 Num5 "[num5]"
+	setcycle 31 Num6 "[num6]"
+	setcycle 31 Num7 7
+	setcycle 31 Num0 "[num0]"
+	setcycle 31 Num2 "[num2]"
+	setcycle 31 Weight 5
+	setcycle 31 Num3 "[num3]"
+	setcycle 31 Num8 7
+	setcycle 31 Num9 7
+	setcycle 31 Nback 7
+	setcycle 31 Num1 "[num1]"
+	setcycle 32 Num4 "[num4]"
+	setcycle 32 Num5 "[num5]"
+	setcycle 32 Num6 "[num6]"
+	setcycle 32 Num7 7
+	setcycle 32 Num0 "[num0]"
+	setcycle 32 Num2 "[num2]"
+	setcycle 32 Weight 5
+	setcycle 32 Num3 "[num3]"
+	setcycle 32 Num8 7
+	setcycle 32 Num9 7
+	setcycle 32 Nback 7
+	setcycle 32 Num1 "[num1]"
+	setcycle 33 Num4 "[num4]"
+	setcycle 33 Num5 "[num5]"
+	setcycle 33 Num6 "[num6]"
+	setcycle 33 Num7 7
+	setcycle 33 Num0 "[num0]"
+	setcycle 33 Num2 "[num2]"
+	setcycle 33 Weight 5
+	setcycle 33 Num3 "[num3]"
+	setcycle 33 Num8 7
+	setcycle 33 Num9 7
+	setcycle 33 Nback 7
+	setcycle 33 Num1 "[num1]"
+	setcycle 34 Num4 "[num4]"
+	setcycle 34 Num5 "[num5]"
+	setcycle 34 Num6 "[num6]"
+	setcycle 34 Num7 7
+	setcycle 34 Num0 "[num0]"
+	setcycle 34 Num2 "[num2]"
+	setcycle 34 Weight 5
+	setcycle 34 Num3 "[num3]"
+	setcycle 34 Num8 7
+	setcycle 34 Num9 7
+	setcycle 34 Nback 7
+	setcycle 34 Num1 "[num1]"
+	setcycle 35 Num4 "[num4]"
+	setcycle 35 Num5 "[num5]"
+	setcycle 35 Num6 "[num6]"
+	setcycle 35 Num7 "[num7]"
+	setcycle 35 Num0 "[num0]"
+	setcycle 35 Num2 "[num2]"
+	setcycle 35 Weight 5
+	setcycle 35 Num3 "[num3]"
+	setcycle 35 Num8 7
+	setcycle 35 Num9 7
+	setcycle 35 Nback 8
+	setcycle 35 Num1 "[num1]"
+	setcycle 36 Num4 "[num4]"
+	setcycle 36 Num5 "[num5]"
+	setcycle 36 Num6 "[num6]"
+	setcycle 36 Num7 "[num7]"
+	setcycle 36 Num0 "[num0]"
+	setcycle 36 Num2 "[num2]"
+	setcycle 36 Weight 5
+	setcycle 36 Num3 "[num3]"
+	setcycle 36 Num8 7
+	setcycle 36 Num9 7
+	setcycle 36 Nback 8
+	setcycle 36 Num1 "[num1]"
+	setcycle 37 Num4 "[num4]"
+	setcycle 37 Num5 "[num5]"
+	setcycle 37 Num6 "[num6]"
+	setcycle 37 Num7 "[num7]"
+	setcycle 37 Num0 "[num0]"
+	setcycle 37 Num2 "[num2]"
+	setcycle 37 Weight 5
+	setcycle 37 Num3 "[num3]"
+	setcycle 37 Num8 7
+	setcycle 37 Num9 7
+	setcycle 37 Nback 8
+	setcycle 37 Num1 "[num1]"
+	setcycle 38 Num4 "[num4]"
+	setcycle 38 Num5 "[num5]"
+	setcycle 38 Num6 "[num6]"
+	setcycle 38 Num7 "[num7]"
+	setcycle 38 Num0 "[num0]"
+	setcycle 38 Num2 "[num2]"
+	setcycle 38 Weight 5
+	setcycle 38 Num3 "[num3]"
+	setcycle 38 Num8 7
+	setcycle 38 Num9 7
+	setcycle 38 Nback 8
+	setcycle 38 Num1 "[num1]"
+	setcycle 39 Num4 "[num4]"
+	setcycle 39 Num5 "[num5]"
+	setcycle 39 Num6 "[num6]"
+	setcycle 39 Num7 "[num7]"
+	setcycle 39 Num0 "[num0]"
+	setcycle 39 Num2 "[num2]"
+	setcycle 39 Weight 5
+	setcycle 39 Num3 "[num3]"
+	setcycle 39 Num8 7
+	setcycle 39 Num9 7
+	setcycle 39 Nback 8
+	setcycle 39 Num1 "[num1]"
+	setcycle 40 Num4 "[num4]"
+	setcycle 40 Num5 "[num5]"
+	setcycle 40 Num6 "[num6]"
+	setcycle 40 Num7 "[num7]"
+	setcycle 40 Num0 "[num0]"
+	setcycle 40 Num2 "[num2]"
+	setcycle 40 Weight 5
+	setcycle 40 Num3 "[num3]"
+	setcycle 40 Num8 "[num8]"
+	setcycle 40 Num9 7
+	setcycle 40 Nback 9
+	setcycle 40 Num1 "[num1]"
+	setcycle 41 Num4 "[num4]"
+	setcycle 41 Num5 "[num5]"
+	setcycle 41 Num6 "[num6]"
+	setcycle 41 Num7 "[num7]"
+	setcycle 41 Num0 "[num0]"
+	setcycle 41 Num2 "[num2]"
+	setcycle 41 Weight 5
+	setcycle 41 Num3 "[num3]"
+	setcycle 41 Num8 "[num8]"
+	setcycle 41 Num9 7
+	setcycle 41 Nback 9
+	setcycle 41 Num1 "[num1]"
+	setcycle 42 Num4 "[num4]"
+	setcycle 42 Num5 "[num5]"
+	setcycle 42 Num6 "[num6]"
+	setcycle 42 Num7 "[num7]"
+	setcycle 42 Num0 "[num0]"
+	setcycle 42 Num2 "[num2]"
+	setcycle 42 Weight 5
+	setcycle 42 Num3 "[num3]"
+	setcycle 42 Num8 "[num8]"
+	setcycle 42 Num9 7
+	setcycle 42 Nback 9
+	setcycle 42 Num1 "[num1]"
+	setcycle 43 Num4 "[num4]"
+	setcycle 43 Num5 "[num5]"
+	setcycle 43 Num6 "[num6]"
+	setcycle 43 Num7 "[num7]"
+	setcycle 43 Num0 "[num0]"
+	setcycle 43 Num2 "[num2]"
+	setcycle 43 Weight 5
+	setcycle 43 Num3 "[num3]"
+	setcycle 43 Num8 "[num8]"
+	setcycle 43 Num9 7
+	setcycle 43 Nback 9
+	setcycle 43 Num1 "[num1]"
+	setcycle 44 Num4 "[num4]"
+	setcycle 44 Num5 "[num5]"
+	setcycle 44 Num6 "[num6]"
+	setcycle 44 Num7 "[num7]"
+	setcycle 44 Num0 "[num0]"
+	setcycle 44 Num2 "[num2]"
+	setcycle 44 Weight 5
+	setcycle 44 Num3 "[num3]"
+	setcycle 44 Num8 "[num8]"
+	setcycle 44 Num9 7
+	setcycle 44 Nback 9
+	setcycle 44 Num1 "[num1]"
+	setcycle 45 Num4 "[num4]"
+	setcycle 45 Num5 "[num5]"
+	setcycle 45 Num6 "[num6]"
+	setcycle 45 Num7 "[num7]"
+	setcycle 45 Num0 "[num0]"
+	setcycle 45 Num2 "[num2]"
+	setcycle 45 Weight 5
+	setcycle 45 Num3 "[num3]"
+	setcycle 45 Num8 "[num8]"
+	setcycle 45 Num9 "[num9]"
+	setcycle 45 Nback 10
+	setcycle 45 Num1 "[num1]"
+	setcycle 46 Num4 "[num4]"
+	setcycle 46 Num5 "[num5]"
+	setcycle 46 Num6 "[num6]"
+	setcycle 46 Num7 "[num7]"
+	setcycle 46 Num0 "[num0]"
+	setcycle 46 Num2 "[num2]"
+	setcycle 46 Weight 5
+	setcycle 46 Num3 "[num3]"
+	setcycle 46 Num8 "[num8]"
+	setcycle 46 Num9 "[num9]"
+	setcycle 46 Nback 10
+	setcycle 46 Num1 "[num1]"
+	setcycle 47 Num4 "[num4]"
+	setcycle 47 Num5 "[num5]"
+	setcycle 47 Num6 "[num6]"
+	setcycle 47 Num7 "[num7]"
+	setcycle 47 Num0 "[num0]"
+	setcycle 47 Num2 "[num2]"
+	setcycle 47 Weight 5
+	setcycle 47 Num3 "[num3]"
+	setcycle 47 Num8 "[num8]"
+	setcycle 47 Num9 "[num9]"
+	setcycle 47 Nback 10
+	setcycle 47 Num1 "[num1]"
+	setcycle 48 Num4 "[num4]"
+	setcycle 48 Num5 "[num5]"
+	setcycle 48 Num6 "[num6]"
+	setcycle 48 Num7 "[num7]"
+	setcycle 48 Num0 "[num0]"
+	setcycle 48 Num2 "[num2]"
+	setcycle 48 Weight 5
+	setcycle 48 Num3 "[num3]"
+	setcycle 48 Num8 "[num8]"
+	setcycle 48 Num9 "[num9]"
+	setcycle 48 Nback 10
+	setcycle 48 Num1 "[num1]"
+	setcycle 49 Num4 "[num4]"
+	setcycle 49 Num5 "[num5]"
+	setcycle 49 Num6 "[num6]"
+	setcycle 49 Num7 "[num7]"
+	setcycle 49 Num0 "[num0]"
+	setcycle 49 Num2 "[num2]"
+	setcycle 49 Weight 5
+	setcycle 49 Num3 "[num3]"
+	setcycle 49 Num8 "[num8]"
+	setcycle 49 Num9 "[num9]"
+	setcycle 49 Nback 10
+	setcycle 49 Num1 "[num1]"
+	run Trials
+
+define sketchpad Dot
+	set reset_variables no
+	set duration "[DotDur]"
+	set description "Displays stimuli"
+	draw fixdot color=green show_if=always style=default x=0 y=0 z_index=0
+
+define inline_script GenerateNums
+	set description "Executes Python code"
+	___run__
+	nums=[1,2,3,4,5,6,8,9]
+	random.shuffle(nums)
+	num0=random.choice(nums)
+	num1=random.choice(nums)
+	num2=random.choice(nums)
+	num3=random.choice(nums)
+	num4=random.choice(nums)
+	num5=random.choice(nums)
+	num6=random.choice(nums)
+	num7=random.choice(nums)
+	num8=random.choice(nums)
+	num9=random.choice(nums)
+	exp.set("num0",num0)
+	exp.set("num1",num1)
+	exp.set("num2",num2)
+	exp.set("num3",num3)
+	exp.set("num4",num4)
+	exp.set("num5",num5)
+	exp.set("num6",num6)
+	exp.set("num7",num7)
+	exp.set("num8",num8)
+	exp.set("num9",num9)
+	global nums
+	__end__
+	set _prepare "import random"
+
+define sketchpad Intro
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="In this experiment you will see a sequence of numbers.<br/><br/>Your job will be to remember those numbers<br/>in order.<br/><br/>Once you enter the numbers into the box<br/> hit the SPACE BAR to continue." x=0 y=0 z_index=0
+
+define sketchpad Next
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Press the SPACE BAR when you're ready<br/>to continue to the next sequence of numbers" x=0 y=0 z_index=0
+
+define sketchpad Recall
+	set reset_variables no
+	set duration 300
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="Recall..." x=0 y=0 z_index=0
+
+define keyboard_response SPACE_BAR
+	set timeout infinite
+	set flush yes
+	set duration keypress
+	set description "Collects keyboard responses"
+	set allowed_responses SPACE
+
+define sketchpad Seq0
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num0]" x=0 y=0 z_index=0
+
+define sketchpad Seq1
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num1]" x=0 y=0 z_index=0
+
+define sketchpad Seq2
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num2]" x=0 y=0 z_index=0
+
+define sketchpad Seq3
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num3]" x=0 y=0 z_index=0
+
+define sketchpad Seq4
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num4]" x=0 y=0 z_index=0
+
+define sketchpad Seq5
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num5]" x=0 y=0 z_index=0
+
+define sketchpad Seq6
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num6]" x=0 y=0 z_index=0
+
+define sketchpad Seq7
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num7]" x=0 y=0 z_index=0
+
+define sketchpad Seq8
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num8]" x=0 y=0 z_index=0
+
+define sketchpad Seq9
+	set reset_variables no
+	set duration "[NumDur]"
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=always text="[Num9]" x=0 y=0 z_index=0
+
+define inline_script Set_Variables
+	set description "Executes Python code"
+	___run__
+	#Set duration for each number
+	exp.set("NumDur",750)
+	#Set ISI
+	exp.set("ISIdur",500)
+	#Set time for participants to hold sequence in WM
+	exp.set("DotDur",3000)
+	__end__
+	set _prepare ""
+
+define sequence Trials
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run Seq0 "=self.get('Num2')!=7"
+	run blank "=self.get('Num2')!=7"
+	run Seq1 "=self.get('Num2')!=7"
+	run blank "=self.get('Num2')!=7"
+	run Seq2 "=self.get('Num2')!=7"
+	run blank "=self.get('Num2')!=7"
+	run Seq3 "=self.get('Num3')!=7"
+	run blank "=self.get('Num3')!=7"
+	run Seq4 "=self.get('Num4')!=7"
+	run blank "=self.get('Num4')!=7"
+	run Seq5 "=self.get('Num5')!=7"
+	run blank "=self.get('Num5')!=7"
+	run Seq6 "=self.get('Num6')!=7"
+	run blank "=self.get('Num6')!=7"
+	run Seq7 "=self.get('Num7')!=7"
+	run blank "=self.get('Num7')!=7"
+	run Seq8 "=self.get('Num8')!=7"
+	run blank "=self.get('Num8')!=7"
+	run Seq9 "=self.get('Num9')!=7"
+	run Dot "=self.get('Num2')!=7"
+	run Recall "=self.get('Num2')!=7"
+	run Answer "=self.get('Num2')!=7"
+	run logger "=self.get('Num2')!=7"
+	run Next "=self.get('Num2')!=7"
+	run SPACE_BAR "=self.get('Num2')!=7"
+	run GenerateNums always
+
+define sketchpad Welcome
+	set reset_variables no
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Welcome to the experiment.<br/>Your Participant Code is [subject_nr].<br/><br/>Press the SPACE BAR to continue" x=0 y=0 z_index=0
+
+define sketchpad blank
+	set reset_variables no
+	set duration "[ISIdur]"
+	set description "Displays stimuli"
+
+define sequence experiment
+	# Written by Grant M. Berry, 08-2015
+	# berry.grant@gmail.com
+	# Conducts a forward digit span task with randomized sequences of numbers from lengths 3-10, with the ability to alter this range
+	# Forward digit span represents short-term, working memory
+	# There are 20 repetitions of each sequence length. For the case with range 3-10, there are 8*20=160 sequences to be memorized
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run Welcome always
+	run SPACE_BAR always
+	run form_consent always
+	run Intro always
+	run SPACE_BAR always
+	run Set_Variables always
+	run GenerateNums always
+	run Conditions always
+	run Complete always
+
+define form_consent form_consent
+	set timeout infinite
+	set spacing 10
+	set rows "1;4;1;1"
+	set only_render no
+	set margins "50;50;50;50"
+	set form_title "<span size=24>Consent Form</span>"
+	__form_text__
+	You are about to participate in a series of brief experiments.
+	
+	This experiment poses no known risks to your health and your name will not be associated with the findings.
+	
+	Upon completion of your participation in this study, you will be provided with a brief explanation of the question this study addresses.
+	
+	If you have any questions not addressed by this consent form, please do not hesitate to ask.
+	
+	You can stop at any time during experiment if you feel uncomfortable.
+	__end__
+	set decline_text "Do not participate"
+	set decline_message "You need to accept the consent form to participate!"
+	set cols "2;2"
+	set checkbox_text "I have read and understood the information shown above"
+	set accept_text "Participate!"
+	set _theme gray
+	widget 0 0 2 1 label text="[form_title]"
+	widget 0 1 2 1 label center=no text="[form_text]"
+	widget 0 2 2 1 checkbox text="[checkbox_text]" var=checkbox_status
+	widget 0 3 1 1 button text="[accept_text]" var=accept_status
+	widget 1 3 1 1 button text="[decline_text]"
+
+
+define logger logger
+	set description "Logs experimental data"
+	set auto_log yes
+
