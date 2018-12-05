@@ -49,6 +49,18 @@ aybx=ddply(ay_bx_temp,.(Speaker),summarize,AY_BX=avg_RT.x/avg_RT.y)
 temp1=merge(ayax,bxby,by='Speaker');temp2=merge(temp1,aybx,by='Speaker')
 ay_bx=temp2
 
-#Try accuracy
+
+#Need to re-orient measures
+#Proactive:
+##AY/AX: Higher ratios index STRONGER control
+
+#Reactive:
+##BX/BY: Higher ratios index WEAKER control
+
+#********SOLUTION: Multiply by BX/BY -1 before standardizing (or after; doesn't matter)
+
+ay_bx$BX_BY=-1*ay_bx$BX_BY
+
+#If you want to use accuracy:
 library(reshape2)
 acc_bycond=dcast(ax_cpt_acc,Speaker~Condition);acc_bycond$ProAcc=with(acc_bycond,AY/AX);acc_bycond$ReAcc=with(acc_bycond,BX/BY)
