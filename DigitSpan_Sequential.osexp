@@ -1,6 +1,6 @@
 ---
-API: 2
-OpenSesame: 3.1.4
+API: 2.1
+OpenSesame: 3.3.3
 Platform: posix
 ---
 set width 1024
@@ -14,7 +14,7 @@ set sound_sample_size -16
 set sound_freq 48000
 set sound_channels 2
 set sound_buf_size 1024
-set sampler_backend legacy
+set sampler_backend psycho
 set round_decimals 2
 set mouse_backend psycho
 set keyboard_backend psycho
@@ -27,11 +27,13 @@ set font_size 32
 set font_italic no
 set font_family mono
 set font_bold no
-set experiment_path "/Users/grantberry/Desktop/Dissertation/DissertationExperiments/Old/Digit Span"
+set experiment_path "/Users/ethan/Documents/GitHub/OpenSesame"
 set disable_garbage_collection yes
 set description "Default description"
 set coordinates relative
 set compensation 0
+set color_backend psycho
+set clock_backend psycho
 set canvas_backend psycho
 set bidi no
 set background black
@@ -45,6 +47,7 @@ define form_text_input Answer
 	set form_var response
 	set form_title Recall
 	set form_question "TASK [Nback]. What were the numbers, in order? Enter them and then hit Return to continue..."
+	set description "A simple text input form"
 	set cols 1
 	set _theme gray
 	widget 0 0 1 1 label text="[form_title]"
@@ -704,7 +707,7 @@ define inline_script GenerateNums
 	exp.set("num7",num7)
 	exp.set("num8",num8)
 	exp.set("num9",num9)
-	global nums
+	#global nums
 	__end__
 	set _prepare "import random"
 
@@ -729,6 +732,7 @@ define sketchpad Recall
 define keyboard_response SPACE_BAR
 	set timeout infinite
 	set flush yes
+	set event_type keypress
 	set duration keypress
 	set description "Collects keyboard responses"
 	set allowed_responses SPACE
@@ -882,6 +886,7 @@ define form_consent form_consent
 	
 	You can stop at any time during experiment if you feel uncomfortable.
 	__end__
+	set description "A simple consent form"
 	set decline_text "Do not participate"
 	set decline_message "You need to accept the consent form to participate!"
 	set cols "2;2"
